@@ -10,6 +10,13 @@
   </tr>
 </table>
 
+## Design UI for Application Mobile:
+- Frame UI used for screen size: **360 x 800** (Android Large)
+- Link project Figma: [FIGMA UI MOBILE APP ANDROID](https://www.figma.com/file/lqdwZp0OjGFRpFLDHaf9zb/UI-Mobile-App-Rotation-Lucky?type=design&node-id=4%3A3&mode=design&t=hDINk7bhvHlMXdey-1)
+## Report Latex for project on Overleaf:
+- Link report project update according to project progress in Overleaf: [REPORT PROJECT](https://www.overleaf.com/read/vckmgnfhcnds)
+- Link Trello manage project progress: [TRELLO PROJECT](https://trello.com/b/59avCLML/moblie-app-rotation-lucky)
+
 ## Screenshot
 
 <table align="center" style="margin: 0px auto;">
