@@ -5,8 +5,8 @@
 <!-- ![screenshot1](./demo/screenshot1.png) -->
 <table align="center" style="margin: 0px auto;">
   <tr>
-    <td><img align="right" src="./demo/sc1.PNG" height="600" width="300"></img></td>
-    <td><img align="right" src="./demo/sc2.PNG" height="600" width="300"></img></td>
+    <td><img align="right" src="./demo/sc1.PNG" height="600" width="280"></img></td>
+    <td><img align="right" src="./demo/sc2.PNG" height="600" width="280"></img></td>
   </tr>
 </table>
 
