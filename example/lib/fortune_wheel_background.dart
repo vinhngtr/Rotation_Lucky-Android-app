@@ -1,17 +1,16 @@
-import 'dart:async'; 
+import 'dart:async';
 import 'dart:math';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 
-
 class FortuneWheelBackground extends StatefulWidget {
-  const FortuneWheelBackground(
-      {Key? key,
-      required this.painterController,
-      required this.child,
-      this.backgroundColor = const Color(0xff198827),
-      this.duration = const Duration(milliseconds: 5000)})
-      : super(key: key);
+  const FortuneWheelBackground({
+    Key? key,
+    required this.painterController,
+    required this.child,
+    this.backgroundColor = const ui.Color.fromARGB(255, 36, 130, 164),
+    this.duration = const Duration(milliseconds: 5000),
+  }) : super(key: key);
 
   @override
   _FortuneWheelBackgroundState createState() => _FortuneWheelBackgroundState();
@@ -37,7 +36,7 @@ class _FortuneWheelBackgroundState extends State<FortuneWheelBackground>
 
     _controller = AnimationController(vsync: this, duration: widget.duration);
 
-    _painterController.addListener(() async { 
+    _painterController.addListener(() async {
       if (_painterController.isPlay) {
         if (!_creatingCompleter.isCompleted) {
           _controller.reset();

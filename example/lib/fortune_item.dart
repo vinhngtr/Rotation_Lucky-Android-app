@@ -10,7 +10,7 @@ class FortuneItem extends StatelessWidget {
     this.onDeletePressed,
   }) : super(key: key);
 
-  // ! method:  Xóa - sửa các item thuộc mỗi dòng in Setting
+  // ! method:  Xóa - sửa các giá trị vòng quay thuộc mỗi dòng trên setting
   final Fortune fortune;
   final bool isShowAction;
   final VoidCallback? onEditPressed;
@@ -30,18 +30,22 @@ class FortuneItem extends StatelessWidget {
                 Flexible(
                   child: Text(
                     fortune.titleName?.replaceAll('\n', '') ?? '',
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 19,
+                    ),
                   ),
                 ),
-              if (fortune.titleName != null) const SizedBox(width: 16),
+              if (fortune.titleName != null) const SizedBox(width: 20),
               fortune.icon ?? const SizedBox(),
             ],
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 15),
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               const SizedBox(width: 16),
+              // !  độ ưu tiên
               Text(
                 '  x' + fortune.priority.toString(),
                 style: const TextStyle(

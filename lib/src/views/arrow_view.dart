@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 
-///A widget indicator, which is arrow spin result
+///A widget indicator, which is arrow spin result <mũi tên chỉ định kết quả>
 class ArrowView extends StatelessWidget {
   const ArrowView({Key? key}) : super(key: key);
 

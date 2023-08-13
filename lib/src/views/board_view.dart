@@ -4,6 +4,7 @@ import 'package:flutter_fortune_wheel/src/helpers/helpers.dart';
 import 'package:flutter_fortune_wheel/src/models/models.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
+// ! Customize UI vòng quay
 ///UI Wheel
 class BoardView extends StatelessWidget {
   const BoardView({

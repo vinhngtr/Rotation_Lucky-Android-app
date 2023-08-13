@@ -6,6 +6,7 @@ import 'package:flutter_fortune_wheel/src/views/arrow_view.dart';
 import 'package:flutter_fortune_wheel/src/views/board_view.dart';
 import '../core/core.dart';
 
+// ! Customize UI button spin and mode spin:
 class FortuneWheel extends StatefulWidget {
   const FortuneWheel({
     Key? key,
@@ -140,7 +141,7 @@ class _FortuneWheelState extends State<FortuneWheel>
 
   ///UI Wheel center
   Widget _buildCenterOfWheel() {
-    return const CircleAvatar(radius: 16, backgroundColor: Colors.white);
+    return const CircleAvatar(radius: 16, backgroundColor: Colors.blue);
   }
 
   ///UI Button Spin
@@ -148,18 +149,24 @@ class _FortuneWheelState extends State<FortuneWheel>
     return Visibility(
       visible: !_wheelAnimationController.isAnimating,
       child: widget.wheel.action ??
-          TextButton(
+          OutlinedButton(
             onPressed: widget.wheel.isSpinByPriority
                 ? _handleSpinByPriorityPressed
                 : _handleSpinByRandomPressed,
             style: widget.wheel.spinButtonStyle ??
-                TextButton.styleFrom(
-                  backgroundColor: Colors.black.withOpacity(0.4),
+                OutlinedButton.styleFrom(
+                  backgroundColor: Colors.black,
+                  shape: const CircleBorder(),
+                  padding: const EdgeInsets.all(24),
                 ),
             child: widget.wheel.childSpinButton ??
                 Text(
-                  widget.wheel.titleSpinButton ?? 'Click here to spin',
-                  style: const TextStyle(fontSize: 16, color: Colors.white),
+                  widget.wheel.titleSpinButton ?? 'Nhấn vào đây để quay',
+                  style: const TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
           ),
     );

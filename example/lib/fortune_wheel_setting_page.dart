@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_fortune_wheel/flutter_fortune_wheel.dart';
 import 'constants.dart';
-import 'custom_form_fortune_add_edit.dart';
+import 'custom_add_new.dart';
 import 'fortune_item.dart';
 import 'fortune_template.dart';
 
@@ -62,17 +62,20 @@ class _FortuneWheelSettingPageState extends State<FortuneWheelSettingPage> {
             title: const Text(
               'Settings',
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 22,
               ),
             ),
-            actions: [ 
-              IconButton( 
-                splashRadius: 28, 
+            actions: [
+              IconButton(
+                splashRadius: 28,
                 tooltip: 'Save',
                 onPressed: () {
                   Navigator.pop(context, _wheel);
                 },
-                icon: const Icon(Icons.save),
+                icon: const Icon(
+                  Icons.save,
+                  size: 30,
+                ),
               ),
             ],
           ),
@@ -102,7 +105,7 @@ class _FortuneWheelSettingPageState extends State<FortuneWheelSettingPage> {
 
   void _handleConfirmBack() {
     Widget cancelButton = TextButton(
-      child: const Text('Cancel'),
+      child: const Text('Không đồng ý'),
       onPressed: () {
         Navigator.pop(context);
       },
@@ -111,7 +114,7 @@ class _FortuneWheelSettingPageState extends State<FortuneWheelSettingPage> {
       ),
     );
     Widget okButton = TextButton(
-      child: const Text('Confirm'),
+      child: const Text('Chấp nhận'),
       onPressed: () {
         Navigator.pop(context);
         Navigator.pop(context);
@@ -122,9 +125,14 @@ class _FortuneWheelSettingPageState extends State<FortuneWheelSettingPage> {
     );
 
     AlertDialog alert = AlertDialog(
-      title: const Text('Warning'),
+      title: const Text(
+        'Cảnh báo',
+        style: TextStyle(
+          fontSize: 20,
+        ),
+      ),
       content: const Text(
-          'Are you sure you want to go back without saving the changed configuration?'),
+          'Bạn có muốn thoát khỏi đây mà không lưu những thay đổi vừa xảy ra ?'),
       actions: [
         cancelButton,
         okButton,
@@ -143,7 +151,7 @@ class _FortuneWheelSettingPageState extends State<FortuneWheelSettingPage> {
   Widget _buildGameMode() {
     return ListTile(
       title: const Text(
-        'Spin Mode',
+        'Chế độ vòng quay',
         style: TextStyle(fontWeight: FontWeight.bold),
       ),
       subtitle: Column(
@@ -159,7 +167,7 @@ class _FortuneWheelSettingPageState extends State<FortuneWheelSettingPage> {
                 _wheel = _wheel.copyWith(isSpinByPriority: true);
               });
             },
-            title: const Text('The priority mode'),
+            title: const Text('Quay với mức ưu tiên'),
             leading: Radio<bool>(
               value: true,
               groupValue: _wheel.isSpinByPriority,
@@ -175,7 +183,7 @@ class _FortuneWheelSettingPageState extends State<FortuneWheelSettingPage> {
             contentPadding: EdgeInsets.zero,
             horizontalTitleGap: 0.0,
             visualDensity: const VisualDensity(vertical: -4, horizontal: 0),
-            title: const Text('Random mode'),
+            title: const Text('Quay ngẫu nhiên'),
             onTap: () {
               setState(() {
                 _wheel = _wheel.copyWith(isSpinByPriority: false);
@@ -202,7 +210,7 @@ class _FortuneWheelSettingPageState extends State<FortuneWheelSettingPage> {
       title: Row(
         children: [
           const Text(
-            'Spin time (s)',
+            'Thời gian quay (s): ',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           const Spacer(),
@@ -289,7 +297,7 @@ class _FortuneWheelSettingPageState extends State<FortuneWheelSettingPage> {
   Widget _buildEditTitle() {
     return ListTile(
       title: const Text(
-        'Spin button title',
+        'Tên nút nhấn vòng quay: ',
         style: TextStyle(fontWeight: FontWeight.bold),
       ),
       subtitle: Padding(
@@ -303,7 +311,7 @@ class _FortuneWheelSettingPageState extends State<FortuneWheelSettingPage> {
             );
           },
           decoration: const InputDecoration(
-            hintText: 'Enter spin button title',
+            hintText: 'Nhập vào tên nút nhấn',
             hintStyle: TextStyle(color: Colors.grey),
           ),
         ),
@@ -315,8 +323,11 @@ class _FortuneWheelSettingPageState extends State<FortuneWheelSettingPage> {
     return ExpansionTile(
       initiallyExpanded: true,
       title: const Text(
-        'Spin Value',
-        style: TextStyle(fontWeight: FontWeight.bold),
+        'Danh sách giá trị vòng quay',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 20,
+        ),
       ),
       childrenPadding: const EdgeInsets.only(left: 16),
       children: [
@@ -326,13 +337,23 @@ class _FortuneWheelSettingPageState extends State<FortuneWheelSettingPage> {
                 alignment: Alignment.centerLeft,
                 child: ElevatedButton(
                     onPressed: _handleInsertItem,
-                    child: const Text('+ Add new'))),
-            const SizedBox(width: 16),
+                    child: const Text(
+                      '+ Mục mới',
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ))),
+            const SizedBox(width: 20),
             Align(
                 alignment: Alignment.centerLeft,
                 child: ElevatedButton(
                     onPressed: _handleGetDefaultTemplate,
-                    child: const Text('Choose default template'))),
+                    child: const Text(
+                      'Chọn mẫu vòng quay',
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ))),
           ],
         ),
         _buildFortuneValues(),
@@ -429,25 +450,7 @@ class _FortuneWheelSettingPageState extends State<FortuneWheelSettingPage> {
         },
       ),
       FortuneTemplate(
-        title: 'Random number (1- 100)',
-        fortuneValues: Constants.numbers100,
-        onPressed: () {
-          _wheel = _wheel.copyWith(items: Constants.numbers100);
-          _fortuneValuesController.sink.add(true);
-          Navigator.pop(context);
-        },
-      ),
-      FortuneTemplate(
-        title: 'Random number (1- 160)',
-        fortuneValues: Constants.numbers160,
-        onPressed: () {
-          _wheel = _wheel.copyWith(items: Constants.numbers160);
-          _fortuneValuesController.sink.add(true);
-          Navigator.pop(context);
-        },
-      ),
-      FortuneTemplate(
-        title: 'Select reward (icon)',
+        title: 'Icon được chọn ?',
         fortuneValues: Constants.icons2,
         onPressed: () {
           _wheel = _wheel.copyWith(items: Constants.icons2);
@@ -470,7 +473,7 @@ class _FortuneWheelSettingPageState extends State<FortuneWheelSettingPage> {
       barrierDismissible: false,
       builder: (context) {
         return AlertDialog(
-          title: const Text('Choose default template'),
+          title: const Text('Chọn mẫu vòng quay bên dưới'),
           contentPadding: const EdgeInsets.symmetric(horizontal: 16),
           content: SingleChildScrollView(
             child: Column(
@@ -483,7 +486,7 @@ class _FortuneWheelSettingPageState extends State<FortuneWheelSettingPage> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text('Cancel'),
+              child: const Text('Quay lại'),
             ),
           ],
         );

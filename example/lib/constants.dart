@@ -1,13 +1,13 @@
-import 'dart:math'; 
-import 'package:flutter/material.dart'; 
-import 'package:flutter_fortune_wheel/flutter_fortune_wheel.dart'; 
+import 'dart:math';
+import 'package:flutter/material.dart';
+import 'package:flutter_fortune_wheel/flutter_fortune_wheel.dart';
 
-class Constants { 
-  Constants._(); 
-  static Constants I = Constants._(); 
+class Constants {
+  Constants._();
+  static Constants I = Constants._();
 // ! Danh sách cố định các item thuộc vòng quay:
-  static List<Fortune> list8Item = <Fortune>[ 
-    Fortune( 
+  static List<Fortune> list8Item = <Fortune>[
+    Fortune(
       id: 1,
       titleName: '1',
       backgroundColor: Colors.primaries[0],
@@ -38,20 +38,23 @@ class Constants {
 
   static List<Fortune> list3Item = <Fortune>[
     Fortune(
-        id: 1,
-        titleName: '1',
-        backgroundColor: Colors.primaries[0],
-        icon: const Icon(Icons.person_sharp)),
+      id: 1,
+      titleName: '1',
+      backgroundColor: Colors.primaries[0],
+      icon: const Icon(Icons.person_sharp),
+    ),
     Fortune(
-        id: 2,
-        titleName: '2',
-        backgroundColor: Colors.primaries[2],
-        icon: const Icon(Icons.favorite)),
+      id: 2,
+      titleName: '2',
+      backgroundColor: Colors.primaries[2],
+      icon: const Icon(Icons.favorite),
+    ),
     Fortune(
-        id: 3,
-        titleName: '3',
-        backgroundColor: Colors.primaries[4],
-        icon: const Icon(Icons.star)),
+      id: 3,
+      titleName: '3',
+      backgroundColor: Colors.primaries[4],
+      icon: const Icon(Icons.star),
+    ),
   ];
 
   static List<Fortune> list12Item = <Fortune>[
@@ -120,18 +123,20 @@ class Constants {
   static List<Fortune> numbers160 = List.generate(
     160,
     (index) => Fortune(
-        id: index + 1,
-        backgroundColor:
-            Colors.primaries[Random().nextInt(Colors.primaries.length)],
-        titleName: '${index + 1}'),
+      id: index + 1,
+      backgroundColor:
+          Colors.primaries[Random().nextInt(Colors.primaries.length)],
+      titleName: '${index + 1}',
+    ),
   );
   static List<Fortune> numbers100 = List.generate(
     100,
     (index) => Fortune(
-        id: index + 1,
-        backgroundColor:
-            Colors.primaries[Random().nextInt(Colors.primaries.length)],
-        titleName: '${index + 1}'),
+      id: index + 1,
+      backgroundColor:
+          Colors.primaries[Random().nextInt(Colors.primaries.length)],
+      titleName: '${index + 1}',
+    ),
   );
 
   static List<Fortune> numbers = <Fortune>[

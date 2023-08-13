@@ -1,26 +1,25 @@
-# flutter_fortune_wheel
+# Vòng quay may mắn  [INTERNSHIP]
 
-Visualize (random) selection processes with widgets like a spinning wheel of fortune.
 
-## Screenshot
+## Demo
 <!-- ![screenshot1](./demo/screenshot1.png) -->
 <table align="center" style="margin: 0px auto;">
   <tr>
-    <td><img align="right" src="./demo/screenshot1.png" height="600" width="300"></img></td>
-    <td><img align="right" src="./demo/screenshot2.png" height="600" width="300"></img></td>
+    <td><img align="right" src="./demo/sc1.PNG" height="600" width="300"></img></td>
+    <td><img align="right" src="./demo/sc2.PNG" height="600" width="300"></img></td>
   </tr>
 </table>
 
-## Demo
+## Screenshot
 
 <table align="center" style="margin: 0px auto;">
   <tr>
-    <th>Random Mode</th>
-    <th>Priority Mode</th>
+    <th>Setting Screen in Application</th>
+    <th>Choose template in Application</th>
   </tr>
   <tr>
-    <td><img align="right" src="demo/luckywheel_01.gif" height="600" width="300"></img></td>
-    <td><img align="right" src="demo/luckywheel_02.gif" height="600" width="300"></img></td>
+    <td><img align="right" src="demo/setting.PNG" height="600" width="300"></img></td>
+    <td><img align="right" src="demo/template.PNG" height="600" width="300"></img></td>
   </tr>
 </table>
 

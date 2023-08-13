@@ -16,6 +16,7 @@ import 'package:lottie/lottie.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
+    // not rotate landscape when using app:
     [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
   );
   runApp(
@@ -23,7 +24,7 @@ void main() {
       debugShowCheckedModeBanner: false,
       theme: appTheme,
       home: const MyApp(),
-      title: 'Wheel of Fortune',
+      title: 'Vòng quay may mắn',
     ),
   );
 }
@@ -63,7 +64,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   @override
-  void dispose() { 
+  void dispose() {
     super.dispose();
     _resultWheelController.close();
     _fortuneWheelController.close();
@@ -73,12 +74,12 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 25, 108, 209),
+      backgroundColor: const Color.fromARGB(255, 75, 144, 228),
       body: Stack(
         children: [
           FortuneWheelBackground(
             painterController: _painterController,
-            child: Center(child: _buildFortuneWheel()), 
+            child: Center(child: _buildFortuneWheel()),
           ),
           Align(
             alignment: Alignment.topLeft,
@@ -95,26 +96,30 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
+// ? header:
   Widget _buildHeader() {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.only(right: 8, left: 16),
+        padding: const EdgeInsets.only(right: 10, left: 16, top: 10),
         child: Row(
           children: [
             SvgPicture.asset(
               'assets/icons/fortune_wheel_icon.svg',
-              height: 24,
-              width: 24,
+              height: 26,
+              width: 26,
             ),
             const SizedBox(width: 16),
             const Text(
               'Wheel of Fortune',
               style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
+                color: Color.fromARGB(255, 255, 255, 255),
+                fontSize: 23,
+                fontWeight: FontWeight.bold,
               ),
             ),
+
             const Spacer(),
+            // ! HISTORY RESULT SPIN OF WHEEL:
             IconButton(
               splashRadius: 28,
               onPressed: () {
@@ -127,9 +132,14 @@ class _MyAppState extends State<MyApp> {
                   ),
                 );
               },
-              icon: const Icon(Icons.bar_chart, color: Colors.white),
+              icon: const Icon(
+                Icons.bar_chart,
+                color: Colors.white,
+                size: 28,
+              ),
             ),
             IconButton(
+              // ! setting spin of wheel:
               splashRadius: 28,
               onPressed: () async {
                 _fortuneWheelController.add(false);
@@ -147,7 +157,11 @@ class _MyAppState extends State<MyApp> {
                 _resultWheelController.sink.add(_wheel.items[0]);
                 _fortuneWheelController.add(true);
               },
-              icon: const Icon(Icons.settings, color: Colors.white),
+              icon: const Icon(
+                Icons.settings,
+                color: Colors.white,
+                size: 28,
+              ),
             ),
           ],
         ),
@@ -176,6 +190,7 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
+// ! PAGE RESULT OF SPIN:
   Future<void> _onResult(Fortune item) async {
     // _confettiController.play();
     await showDialog(
@@ -201,7 +216,7 @@ class _MyAppState extends State<MyApp> {
               const Padding(
                 padding: EdgeInsets.only(left: 8.0),
                 child: Text(
-                  'Spin value:',
+                  'Kết quả:',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -226,11 +241,12 @@ class _MyAppState extends State<MyApp> {
                         child: Text(
                           item.titleName?.replaceAll('\n', '') ?? '',
                           style: const TextStyle(
-                            fontSize: 20,
+                            fontSize: 22,
                             color: Colors.white,
                           ),
                         ),
                       ),
+                      // ! TH TEXT LÀ ICON:
                       if (item.icon != null)
                         Padding(
                           padding: const EdgeInsets.only(left: 16),
@@ -252,7 +268,9 @@ class _MyAppState extends State<MyApp> {
                   child: const Text(
                     'OK',
                     style: TextStyle(
-                      color: Color(0xFF1B5E20),
+                      // backgroundColor: Colors.lightBlue,
+                      color: Color.fromARGB(255, 3, 3, 3),
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -269,15 +287,17 @@ class _MyAppState extends State<MyApp> {
     _resultsHistory.add(item);
   }
 
+// ! KẾT QUẢ VÒNG QUAY ĐI CÙNG PAGE RESULT BÊN DƯỚI HEADER
   Widget _buildResultIsChange() {
     return StreamBuilder<Fortune>(
       stream: _resultWheelController.stream,
       builder: (context, snapshot) {
         return Padding(
           padding: const EdgeInsets.only(
-              top: kIsWeb ? 0 : 16.0, left: 16, right: 16),
+              top: kIsWeb ? 0 : 45.0, left: 16, right: 16),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Flexible(
                 child: Text(
@@ -285,8 +305,9 @@ class _MyAppState extends State<MyApp> {
                       ? snapshot.data!.titleName?.replaceAll('\n', '') ?? ''
                       : _wheel.items[0].titleName?.replaceAll('\n', '') ?? '',
                   style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.white.withOpacity(0.7),
+                    fontSize: 30,
+                    color: const Color.fromARGB(255, 255, 255, 255)
+                        .withOpacity(0.9),
                     fontWeight: FontWeight.bold,
                   ),
                 ),
