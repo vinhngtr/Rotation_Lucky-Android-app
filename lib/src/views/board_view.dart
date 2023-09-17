@@ -76,6 +76,8 @@ class BoardView extends StatelessWidget {
         constraints: BoxConstraints.expand(height: size / 3, width: 54),
         child: Column(
           mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             if (fortune.titleName != null)
               Flexible(

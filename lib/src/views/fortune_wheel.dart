@@ -15,6 +15,7 @@ class FortuneWheel extends StatefulWidget {
     required this.onResult,
     this.onAnimationStart,
     this.onAnimationEnd,
+    
   }) : super(key: key);
 
   ///Configure wheel
@@ -22,6 +23,8 @@ class FortuneWheel extends StatefulWidget {
 
   ///Handling updates of changed values while spinning
   final Function(Fortune item) onChanged;
+
+  // final void Function() setTime;
 
   ///Handling returning the result of the spin
   final Function(Fortune item) onResult;
@@ -44,6 +47,8 @@ class _FortuneWheelState extends State<FortuneWheel>
   ///Wheel rotation angle
   ///Default value [_angle] = 0
   double _angle = 0;
+
+  DateTime? currentTime;
 
   ///Current rotation angle of the wheel after spinning
   ///Default value [_currentAngle]=0
@@ -144,6 +149,19 @@ class _FortuneWheelState extends State<FortuneWheel>
     return const CircleAvatar(radius: 16, backgroundColor: Colors.blue);
   }
 
+  void onspin() {
+    setState(() {
+      currentTime = DateTime(
+        DateTime.now().year,
+        DateTime.now().month,
+        DateTime.now().day,
+        DateTime.now().hour,
+        DateTime.now().minute,
+        DateTime.now().second,
+      );
+    });
+  }
+
   ///UI Button Spin
   Widget _buildButtonSpin() {
     return Visibility(
@@ -155,13 +173,13 @@ class _FortuneWheelState extends State<FortuneWheel>
                 : _handleSpinByRandomPressed,
             style: widget.wheel.spinButtonStyle ??
                 OutlinedButton.styleFrom(
-                  backgroundColor: Colors.black,
+                  backgroundColor: const Color.fromARGB(255, 210, 210, 21),
                   shape: const CircleBorder(),
                   padding: const EdgeInsets.all(24),
                 ),
             child: widget.wheel.childSpinButton ??
                 Text(
-                  widget.wheel.titleSpinButton ?? 'Nhấn vào đây để quay',
+                  widget.wheel.titleSpinButton ?? 'OK',
                   style: const TextStyle(
                     fontSize: 20,
                     color: Colors.white,
@@ -174,6 +192,7 @@ class _FortuneWheelState extends State<FortuneWheel>
 
   ///Handling mode random spinning
   Future<void> _handleSpinByRandomPressed() async {
+    
     if (!_wheelAnimationController.isAnimating) {
       //Random hệ số thập phân từ 0 đến 1
       double randomDouble = Random().nextDouble();

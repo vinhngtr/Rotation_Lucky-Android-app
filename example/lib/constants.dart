@@ -36,6 +36,56 @@ class Constants {
     Fortune(id: 12, titleName: '12', backgroundColor: Colors.primaries[4]),
   ];
 
+  static List<Fortune> promotionWatch = <Fortune>[
+    Fortune(
+      id: 1,
+      titleName: 'Khuyen mai 10%',
+      backgroundColor: Colors.primaries[0],
+      priority: 6,
+    ),
+    Fortune(
+      id: 2,
+      titleName: 'Khuyen mai 20%',
+      backgroundColor: Colors.primaries[1],
+      priority: 4,
+    ),
+    Fortune(
+      id: 3,
+      titleName: 'Khuyen mai 40%',
+      backgroundColor: Colors.primaries[2],
+      priority: 3,
+    ),
+    Fortune(
+      id: 4,
+      titleName: 'Khuyen mai 60%',
+      backgroundColor: Colors.primaries[3],
+      priority: 1,
+    ),
+    Fortune(
+      id: 5,
+      titleName: 'Khuyen mai 30%',
+      backgroundColor: Colors.primaries[4],
+      priority: 3,
+    ),
+    Fortune(
+      id: 6,
+      titleName: 'Khuyen mai 15%',
+      backgroundColor: Colors.primaries[5],
+      priority: 7,
+    ),
+    Fortune(
+      id: 7,
+      titleName: 'Mua 1 tặng 1',
+      backgroundColor: Colors.primaries[6],
+      priority: 1,
+    ),
+    Fortune(
+      id: 8,
+      titleName: 'Đến lượt quay sau',
+      backgroundColor: Colors.primaries[7],
+      priority: 5,
+    ),
+  ];
   static List<Fortune> list3Item = <Fortune>[
     Fortune(
       id: 1,

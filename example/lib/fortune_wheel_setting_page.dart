@@ -30,10 +30,11 @@ class _FortuneWheelSettingPageState extends State<FortuneWheelSettingPage> {
 
   final TextEditingController _titleSpinButtonController =
       TextEditingController();
-
+  List<String> listName = ['Khuyến mãi đồng hồ'];
   @override
   void initState() {
     super.initState();
+    // _nameOfWheel.text = widget.text;
     _wheel = widget.wheel;
     _durationWheelController.text = _wheel.duration.inSeconds.toString();
     _titleSpinButtonController.text = _wheel.titleSpinButton ?? '';
@@ -95,6 +96,7 @@ class _FortuneWheelSettingPageState extends State<FortuneWheelSettingPage> {
               _buildGameMode(),
               _buildDuration(),
               _buildEditTitle(),
+              _buildNameWheel(),
               _buildExpansionFortuneValues(),
             ],
           ),
@@ -114,7 +116,7 @@ class _FortuneWheelSettingPageState extends State<FortuneWheelSettingPage> {
       ),
     );
     Widget okButton = TextButton(
-      child: const Text('Chấp nhận'),
+      child: const Text('Đồng ý'),
       onPressed: () {
         Navigator.pop(context);
         Navigator.pop(context);
@@ -132,7 +134,8 @@ class _FortuneWheelSettingPageState extends State<FortuneWheelSettingPage> {
         ),
       ),
       content: const Text(
-          'Bạn có muốn thoát khỏi đây mà không lưu những thay đổi vừa xảy ra ?'),
+        'Bạn có muốn thoát khỏi đây mà không lưu những thay đổi vừa xảy ra ?',
+      ),
       actions: [
         cancelButton,
         okButton,
@@ -252,8 +255,8 @@ class _FortuneWheelSettingPageState extends State<FortuneWheelSettingPage> {
               controller: _durationWheelController,
               keyboardType: TextInputType.number,
               textAlign: TextAlign.center,
-              decoration:
-                  const InputDecoration.collapsed(hintText: 'Enter spin time'),
+              decoration: const InputDecoration.collapsed(
+                  hintText: 'Nhập thời gian quay'),
               onChanged: (String? value) {
                 if (value == '') {
                   _durationWheelController.text = '1';
@@ -384,6 +387,7 @@ class _FortuneWheelSettingPageState extends State<FortuneWheelSettingPage> {
     );
   }
 
+// > LIST CÁC TEMPLATE TỪ BUTTON: "chọn mẫu vòng quay"
   void _handleGetDefaultTemplate() {
     List<FortuneTemplate> templates = <FortuneTemplate>[
       FortuneTemplate(
@@ -391,6 +395,16 @@ class _FortuneWheelSettingPageState extends State<FortuneWheelSettingPage> {
         fortuneValues: Constants.liXiNamMoi,
         onPressed: () {
           _wheel = _wheel.copyWith(items: Constants.liXiNamMoi);
+          _fortuneValuesController.sink.add(true);
+          Navigator.pop(context);
+          // listName.add('Checking');
+        },
+      ),
+      FortuneTemplate(
+        title: 'Khuyến mãi đồng hồ',
+        fortuneValues: Constants.promotionWatch,
+        onPressed: () {
+          _wheel = _wheel.copyWith(items: Constants.promotionWatch);
           _fortuneValuesController.sink.add(true);
           Navigator.pop(context);
         },
@@ -485,12 +499,39 @@ class _FortuneWheelSettingPageState extends State<FortuneWheelSettingPage> {
             ElevatedButton(
               onPressed: () {
                 Navigator.pop(context);
+                // listName.add('Checking');
               },
               child: const Text('Quay lại'),
             ),
           ],
         );
       },
+    );
+  }
+
+  Widget _buildNameWheel() {
+    return const ListTile(
+      title: Row(
+        children: [
+          Text(
+            'Vòng quay mặc định: ',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          // Spacer(),
+          SizedBox(
+            width: 30,
+          ),
+          Text(
+            'Khuyến mãi đồng hồ',
+            style: TextStyle(
+              // fontSize: 30,
+              fontWeight: FontWeight.bold,
+              color: Colors.lightBlue,
+              fontSize: 20,
+            ),
+          )
+        ],
+      ),
     );
   }
 
@@ -540,7 +581,7 @@ class _FortuneWheelSettingPageState extends State<FortuneWheelSettingPage> {
 
   void _handleDeleteFortuneItemPressed(int index) {
     Widget cancelButton = TextButton(
-      child: const Text('Cancel'),
+      child: const Text('Không đồng ý'),
       onPressed: () {
         Navigator.pop(context);
       },
@@ -549,7 +590,7 @@ class _FortuneWheelSettingPageState extends State<FortuneWheelSettingPage> {
       ),
     );
     Widget okButton = TextButton(
-      child: const Text('Confirm'),
+      child: const Text('Chấp nhận'),
       onPressed: () {
         Navigator.pop(context);
         _wheel.items.removeAt(index);
@@ -561,8 +602,8 @@ class _FortuneWheelSettingPageState extends State<FortuneWheelSettingPage> {
     );
 
     AlertDialog alert = AlertDialog(
-      title: const Text('Warning'),
-      content: const Text('Are you sure you want to delete this value?'),
+      title: const Text('Cảnh báo'),
+      content: const Text('Bạn có chắc chắn xóa item này khỏi vòng quay ?'),
       actions: [
         cancelButton,
         okButton,

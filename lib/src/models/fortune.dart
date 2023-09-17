@@ -17,6 +17,7 @@ class Fortune extends Equatable {
   ///Lucky Value ID
   final int id;
 
+  
   ///Lucky value title
   final String? titleName;
 

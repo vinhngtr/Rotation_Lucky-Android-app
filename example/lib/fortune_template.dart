@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fortune_wheel/flutter_fortune_wheel.dart';
 import 'fortune_templates_detail_page.dart';
+// import 'fortune_wheel_setting_page.dart';
 
 // ? ITEM template vòng quay có thể dùng -->
 class FortuneTemplate extends StatelessWidget {

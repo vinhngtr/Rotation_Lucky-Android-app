@@ -1,15 +1,38 @@
+// import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_fortune_wheel/flutter_fortune_wheel.dart';
+import 'package:intl/intl.dart';
+// import 'package:uuid/uuid.dart';
 
 // Tracking history mỗi lần quay được
-class FortuneWheelHistoryPage extends StatelessWidget {
-  const FortuneWheelHistoryPage({Key? key, required this.resultsHistory})
-      : super(key: key);
+final formatter = DateFormat.yMd();
 
+class FortuneWheelHistoryPage extends StatefulWidget {
+  const FortuneWheelHistoryPage({
+    Key? key,
+    required this.resultsHistory,
+    required this.currTime,
+  }) : super(key: key);
   final List<Fortune> resultsHistory;
+  final List<String> currTime;
+  //  String get formattedDate {
+  //   return formatter.format(time);
+  // }
+  @override
+  State<FortuneWheelHistoryPage> createState() => _HistoryPage();
+}
+
+class _HistoryPage extends State<FortuneWheelHistoryPage> {
+  // DateTime? _selectDate;
+  late List<Fortune> resultsHistoryP = widget.resultsHistory;
+  late List<String> currTime = widget.currTime;
 
   @override
   Widget build(BuildContext context) {
+    // String currTime = setTime;
+    // final formattedTime = DateFormat("HH:mm:ss").format(setTime);
+    // var timer = currTime();
     return Scaffold(
       appBar: AppBar(
           title: const Text(
@@ -19,15 +42,15 @@ class FortuneWheelHistoryPage extends StatelessWidget {
         ),
       )),
       body: ListView.separated(
-        itemCount: resultsHistory.length,
+        itemCount: resultsHistoryP.length,
         padding: const EdgeInsets.all(20),
         itemBuilder: (context, index) {
           return Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                '--> Lần ${index + 1} : ' +
-                    (resultsHistory[index].titleName?.replaceAll('\n', '') ??
+                ' Lần ${index + 1} : ' +
+                    (resultsHistoryP[index].titleName?.replaceAll('\n', '') ??
                         ''),
                 style: const TextStyle(
                   fontSize: 18,
@@ -36,8 +59,10 @@ class FortuneWheelHistoryPage extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 8.0),
-                child: resultsHistory[index].icon ?? const SizedBox(),
+                child: resultsHistoryP[index].icon ?? const SizedBox(),
               ),
+              const Spacer(),
+              Text(currTime[index]),
             ],
           );
         },

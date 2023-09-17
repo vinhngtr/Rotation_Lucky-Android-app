@@ -63,6 +63,7 @@ class _CustomFormFortuneAddEditState extends State<CustomFormFortuneAddEdit> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   TextFormField(
+                    maxLength: 20,
                     controller: _titleItemController,
                     keyboardType: TextInputType.text,
                     decoration: const InputDecoration(
@@ -79,7 +80,7 @@ class _CustomFormFortuneAddEditState extends State<CustomFormFortuneAddEdit> {
                     controller: _priorityController,
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
-                      hintText: 'Nhập vào độ ưu tiên',
+                      hintText: 'Độ ưu tiên là một số',
                       labelText: 'Mức độ ưu tiên',
                     ),
                     validator: (String? value) {
@@ -136,7 +137,7 @@ class _CustomFormFortuneAddEditState extends State<CustomFormFortuneAddEdit> {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: const Text('Cancel'),
+                  child: const Text('Không lưu'),
                 ),
                 const SizedBox(width: 16),
                 ElevatedButton(
@@ -149,7 +150,7 @@ class _CustomFormFortuneAddEditState extends State<CustomFormFortuneAddEdit> {
                       widget.onChanged.call(_fortuneItem);
                     }
                   },
-                  child: const Text('Save'),
+                  child: const Text('Lưu'),
                 ),
               ],
             ),

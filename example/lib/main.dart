@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_fortune_wheel/flutter_fortune_wheel.dart';
 import 'constants.dart';
-
+import 'package:intl/intl.dart';
 import 'theme.dart';
 import 'fortune_wheel_history_page.dart';
 import 'fortune_wheel_setting_page.dart';
@@ -49,8 +49,10 @@ class _MyAppState extends State<MyApp> {
 
   late ConfettiController _confettiController;
 
+  // DateTime date;
+  List<String> listTime = [];
   Wheel _wheel = Wheel(
-    items: Constants.liXiNamMoi,
+    items: Constants.promotionWatch,
     isSpinByPriority: true,
     duration: const Duration(seconds: 10),
   );
@@ -69,6 +71,23 @@ class _MyAppState extends State<MyApp> {
     _resultWheelController.close();
     _fortuneWheelController.close();
     _confettiController.dispose();
+  }
+
+  // String result = '';
+
+  String setTime() {
+    final currentTime = DateTime(
+      DateTime.now().year,
+      DateTime.now().month,
+      DateTime.now().day,
+      DateTime.now().hour,
+      DateTime.now().minute,
+      DateTime.now().second,
+    );
+
+    final finaltime = DateFormat("HH:mm:ss a").format(currentTime);
+    return finaltime;
+    // return listTime;
   }
 
   @override
@@ -98,6 +117,7 @@ class _MyAppState extends State<MyApp> {
 
 // ? header:
   Widget _buildHeader() {
+    // result = setTime();
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.only(right: 10, left: 16, top: 10),
@@ -110,7 +130,7 @@ class _MyAppState extends State<MyApp> {
             ),
             const SizedBox(width: 16),
             const Text(
-              'Wheel of Fortune',
+              'Vòng quay may mắn',
               style: TextStyle(
                 color: Color.fromARGB(255, 255, 255, 255),
                 fontSize: 23,
@@ -128,6 +148,7 @@ class _MyAppState extends State<MyApp> {
                   MaterialPageRoute(
                     builder: (context) => FortuneWheelHistoryPage(
                       resultsHistory: _resultsHistory,
+                      currTime: listTime,
                     ),
                   ),
                 );
@@ -190,7 +211,7 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-// ! PAGE RESULT OF SPIN:
+// ! ALERT RESULT OF SPIN:
   Future<void> _onResult(Fortune item) async {
     // _confettiController.play();
     await showDialog(
@@ -285,6 +306,7 @@ class _MyAppState extends State<MyApp> {
       },
     );
     _resultsHistory.add(item);
+    listTime.add(setTime());
   }
 
 // ! KẾT QUẢ VÒNG QUAY ĐI CÙNG PAGE RESULT BÊN DƯỚI HEADER

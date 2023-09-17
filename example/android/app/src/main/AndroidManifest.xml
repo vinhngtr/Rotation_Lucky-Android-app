@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.flutter_fortune_wheel_example">
    <application
-        android:label="flutter_fortune_wheel_example"
+        android:label="Fortune Wheel - Internship"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
