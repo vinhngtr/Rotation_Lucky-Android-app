@@ -43,7 +43,7 @@ class _MyAppState extends State<MyApp> {
   final List<Fortune> _resultsHistory = <Fortune>[];
   final StreamController<bool> _fortuneWheelController =
       StreamController<bool>.broadcast();
-
+  
   final BackgroundPainterController _painterController =
       BackgroundPainterController();
 

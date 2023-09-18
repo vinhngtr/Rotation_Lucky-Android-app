@@ -96,7 +96,7 @@ class _FortuneWheelSettingPageState extends State<FortuneWheelSettingPage> {
               _buildGameMode(),
               _buildDuration(),
               _buildEditTitle(),
-              _buildNameWheel(),
+              // _buildNameWheel(),
               _buildExpansionFortuneValues(),
             ],
           ),
@@ -509,31 +509,33 @@ class _FortuneWheelSettingPageState extends State<FortuneWheelSettingPage> {
     );
   }
 
-  Widget _buildNameWheel() {
-    return const ListTile(
-      title: Row(
-        children: [
-          Text(
-            'Vòng quay mặc định: ',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-          // Spacer(),
-          SizedBox(
-            width: 30,
-          ),
-          Text(
-            'Khuyến mãi đồng hồ',
-            style: TextStyle(
-              // fontSize: 30,
-              fontWeight: FontWeight.bold,
-              color: Colors.lightBlue,
-              fontSize: 20,
-            ),
-          )
-        ],
-      ),
-    );
-  }
+  // Widget _buildNameWheel() {
+  //   return ListTile(
+  //     title: Row(
+  //       children: [
+  //         const Text(
+  //           'Vòng quay mặc định: ',
+  //           style: TextStyle(
+  //             fontWeight: FontWeight.bold,
+  //           ),
+  //         ),
+  //         // Spacer(),
+  //         SizedBox(
+  //           width: 30,
+  //         ),
+  //         Text(
+  //           'Khuyến mãi đồng hồ',
+  //           style: TextStyle(
+  //             // fontSize: 30,
+  //             fontWeight: FontWeight.bold,
+  //             color: Colors.lightBlue,
+  //             fontSize: 20,
+  //           ),
+  //         )
+  //       ],
+  //     ),
+  //   );
+  // }
 
   Future<void> _handleInsertItem() async {
     await showDialog(
