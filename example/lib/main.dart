@@ -1,17 +1,20 @@
 import 'dart:async';
+
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_fortune_wheel/flutter_fortune_wheel.dart';
-import 'constants.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
-import 'theme.dart';
+import 'package:lottie/lottie.dart';
+
+import 'constants.dart';
+import 'fortune_wheel_background.dart';
 import 'fortune_wheel_history_page.dart';
 import 'fortune_wheel_setting_page.dart';
-import 'fortune_wheel_background.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:lottie/lottie.dart';
+import 'theme.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,7 +46,7 @@ class _MyAppState extends State<MyApp> {
   final List<Fortune> _resultsHistory = <Fortune>[];
   final StreamController<bool> _fortuneWheelController =
       StreamController<bool>.broadcast();
-  
+
   final BackgroundPainterController _painterController =
       BackgroundPainterController();
 
@@ -129,16 +132,17 @@ class _MyAppState extends State<MyApp> {
               width: 26,
             ),
             const SizedBox(width: 16),
-            const Text(
-              'Vòng quay may mắn',
-              style: TextStyle(
-                color: Color.fromARGB(255, 255, 255, 255),
-                fontSize: 23,
-                fontWeight: FontWeight.bold,
+            const Expanded(
+              child: AutoSizeText(
+                'Vòng quay may mắn',
+                style: TextStyle(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
 
-            const Spacer(),
             // ! HISTORY RESULT SPIN OF WHEEL:
             IconButton(
               splashRadius: 28,
